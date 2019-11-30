@@ -219,7 +219,8 @@
 .markdown-body kbd,
 .markdown-body pre {
   font-family: monospace,monospace;
-  font-size: 1em;
+  font-weight:bold;
+  font-size: 2em;
 }
 
 .markdown-body hr {
