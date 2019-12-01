@@ -21,156 +21,161 @@
 
 <h1 align="center" id="-beiims-world-">/beiims.world/</h1>
 
-
 <p align="center">
-	<a href="#page1">Page 1</a>
-	<a href="#page2">Page 2</a>
-	<a href="#page3">Page 3</a>
-	<a href="#page4">Page 4</a>
+	<a href="#page1"> home </a> |
+	<a href="#page2"> twitter </a> |
+	<a href="#page3"> dev </a> |
+	<a href="#page4"> dsktps </a>
 </p>
 <br>
-			
-I am <strong>beiims</strong>, an independent game developer, programmer, and musician.<br>
+
+I'm <i><strong>beiims</strong></i>, an independent game developer, programmer, and musician.<br>
 I work mostly with <em>lua</em> and <em>bash</em>.
 
 <hr>
 <h5 id="levelmain-lua">LevelMain.lua</h5>
-<p>This is a very simple scaling level system written in lua for application in Roblox.</p>
-<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(34, 34, 34) none repeat scroll 0% 0%; color: rgb(170, 170, 170);"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> replicatedStorage = game:GetService(<span class="hljs-string" style="color: rgb(255, 204, 51);">"ReplicatedStorage"</span>)
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> events = replicatedStorage:WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Events"</span>)
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> levelDataLoaded = events:WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"LevelDataLoaded"</span>)
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> level = game:GetService(<span class="hljs-string" style="color: rgb(255, 204, 51);">"DataStoreService"</span>):GetOrderedDataStore(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Levels"</span>)
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> xp = game:GetService(<span class="hljs-string" style="color: rgb(255, 204, 51);">"DataStoreService"</span>):GetOrderedDataStore(<span class="hljs-string" style="color: rgb(255, 204, 51);">"XP"</span>)
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> requiredxp = game:GetService(<span class="hljs-string" style="color: rgb(255, 204, 51);">"DataStoreService"</span>):GetOrderedDataStore(<span class="hljs-string" style="color: rgb(255, 204, 51);">"RequiredXP"</span>)
+<p>This is a very simple scaling level system written in lua for application in Roblox.<br>
+Requirements for use without modification:
+	<ul>
+		<li>A folder titled <i>"Events"</i> under <strong>ReplicatedStorage</strong></li>
+		<li>A <strong>Remote Event</strong> titled <i>"LevelDataLoaded"</i> under <i>"Events"</i> folder</li>
+	</ul>
+</p>
+
+<pre class="hljs" style="display: block; overflow-x: auto; background: rgb(239, 236, 244) none repeat scroll 0% 0%; color: rgb(88, 82, 96); padding: 0.5em;"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> replicatedStorage = game:GetService(<span class="hljs-string" style="color: rgb(42, 146, 146);">"ReplicatedStorage"</span>)
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> events = replicatedStorage:WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Events"</span>)
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> levelDataLoaded = events:WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"LevelDataLoaded"</span>)
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> level = game:GetService(<span class="hljs-string" style="color: rgb(42, 146, 146);">"DataStoreService"</span>):GetOrderedDataStore(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Levels"</span>)
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> xp = game:GetService(<span class="hljs-string" style="color: rgb(42, 146, 146);">"DataStoreService"</span>):GetOrderedDataStore(<span class="hljs-string" style="color: rgb(42, 146, 146);">"XP"</span>)
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> requiredxp = game:GetService(<span class="hljs-string" style="color: rgb(42, 146, 146);">"DataStoreService"</span>):GetOrderedDataStore(<span class="hljs-string" style="color: rgb(42, 146, 146);">"RequiredXP"</span>)
 
 
-game.Players.PlayerAdded:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">(player)</span></span>
+game.Players.PlayerAdded:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">(player)</span></span>
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> playerName = player.Name
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> playerName = player.Name
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> Levels = Instance.new(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Folder"</span>)
-  Levels.Name = <span class="hljs-string" style="color: rgb(255, 204, 51);">"Levels"</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> Levels = Instance.new(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Folder"</span>)
+  Levels.Name = <span class="hljs-string" style="color: rgb(42, 146, 146);">"Levels"</span>
   Levels.Parent = player
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> numLevel = Instance.new(<span class="hljs-string" style="color: rgb(255, 204, 51);">"IntValue"</span>)
-  numLevel.Name = <span class="hljs-string" style="color: rgb(255, 204, 51);">"NumLevel"</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> numLevel = Instance.new(<span class="hljs-string" style="color: rgb(42, 146, 146);">"IntValue"</span>)
+  numLevel.Name = <span class="hljs-string" style="color: rgb(42, 146, 146);">"NumLevel"</span>
   numLevel.Parent = Levels
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> numXP = Instance.new(<span class="hljs-string" style="color: rgb(255, 204, 51);">"IntValue"</span>)
-  numXP.Name = <span class="hljs-string" style="color: rgb(255, 204, 51);">"NumXP"</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> numXP = Instance.new(<span class="hljs-string" style="color: rgb(42, 146, 146);">"IntValue"</span>)
+  numXP.Name = <span class="hljs-string" style="color: rgb(42, 146, 146);">"NumXP"</span>
   numXP.Parent = Levels
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> reqXP = Instance.new(<span class="hljs-string" style="color: rgb(255, 204, 51);">"IntValue"</span>)
-  reqXP.Name = <span class="hljs-string" style="color: rgb(255, 204, 51);">"ReqXP"</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> reqXP = Instance.new(<span class="hljs-string" style="color: rgb(42, 146, 146);">"IntValue"</span>)
+  reqXP.Name = <span class="hljs-string" style="color: rgb(42, 146, 146);">"ReqXP"</span>
   reqXP.Parent = Levels
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> numLevelSavedData = <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> numXPSavedData = <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> reqXPSavedData = <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> numLevelSavedData = <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> numXPSavedData = <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> reqXPSavedData = <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span>
 
-  <span class="hljs-built_in" style="color: rgb(50, 170, 238);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">()</span></span>
-    numLevelSavedData = level:GetAsync(<span class="hljs-built_in" style="color: rgb(50, 170, 238);">tostring</span>(player.UserId))
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
+  <span class="hljs-built_in" style="color: rgb(170, 87, 60);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">()</span></span>
+    numLevelSavedData = level:GetAsync(<span class="hljs-built_in" style="color: rgb(170, 87, 60);">tostring</span>(player.UserId))
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span>  numLevelSavedData ~= <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span>  numLevelSavedData ~= <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span>
     numLevel.Value = numLevelSavedData
-    <span class="hljs-built_in" style="color: rgb(50, 170, 238);">print</span>(<span class="hljs-string" style="color: rgb(255, 204, 51);">"NumLevel data for player "</span>..player.UserId..<span class="hljs-string" style="color: rgb(255, 204, 51);">" loaded"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">else</span>
-    <span class="hljs-comment" style="color: rgb(68, 68, 68);">-- New player</span>
-    numLevel.Value = <span class="hljs-number" style="color: rgb(0, 204, 102);">1</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
+    <span class="hljs-built_in" style="color: rgb(170, 87, 60);">print</span>(<span class="hljs-string" style="color: rgb(42, 146, 146);">"NumLevel data for player "</span>..player.UserId..<span class="hljs-string" style="color: rgb(42, 146, 146);">" loaded"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">else</span>
+    <span class="hljs-comment" style="color: rgb(101, 95, 109);">-- New player</span>
+    numLevel.Value = <span class="hljs-number" style="color: rgb(170, 87, 60);">1</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
 
-  <span class="hljs-built_in" style="color: rgb(50, 170, 238);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">()</span></span>
-    numXPSavedData = xp:GetAsync(<span class="hljs-built_in" style="color: rgb(50, 170, 238);">tostring</span>(player.UserId))
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
+  <span class="hljs-built_in" style="color: rgb(170, 87, 60);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">()</span></span>
+    numXPSavedData = xp:GetAsync(<span class="hljs-built_in" style="color: rgb(170, 87, 60);">tostring</span>(player.UserId))
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span>  numXPSavedData ~= <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span>  numXPSavedData ~= <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span>
     numXP.Value = numXPSavedData
-    <span class="hljs-built_in" style="color: rgb(50, 170, 238);">print</span>(<span class="hljs-string" style="color: rgb(255, 204, 51);">"NumXP data for player "</span>..player.UserId..<span class="hljs-string" style="color: rgb(255, 204, 51);">" loaded"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">else</span>
-    <span class="hljs-comment" style="color: rgb(68, 68, 68);">-- New player</span>
-    numXP.Value = <span class="hljs-number" style="color: rgb(0, 204, 102);">0</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
+    <span class="hljs-built_in" style="color: rgb(170, 87, 60);">print</span>(<span class="hljs-string" style="color: rgb(42, 146, 146);">"NumXP data for player "</span>..player.UserId..<span class="hljs-string" style="color: rgb(42, 146, 146);">" loaded"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">else</span>
+    <span class="hljs-comment" style="color: rgb(101, 95, 109);">-- New player</span>
+    numXP.Value = <span class="hljs-number" style="color: rgb(170, 87, 60);">0</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
 
-  <span class="hljs-built_in" style="color: rgb(50, 170, 238);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">()</span></span>
-    reqXPSavedData = requiredxp:GetAsync(<span class="hljs-built_in" style="color: rgb(50, 170, 238);">tostring</span>(player.UserId))
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
+  <span class="hljs-built_in" style="color: rgb(170, 87, 60);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">()</span></span>
+    reqXPSavedData = requiredxp:GetAsync(<span class="hljs-built_in" style="color: rgb(170, 87, 60);">tostring</span>(player.UserId))
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span>  reqXPSavedData ~= <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span>  reqXPSavedData ~= <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span>
     reqXP.Value = reqXPSavedData
-    <span class="hljs-built_in" style="color: rgb(50, 170, 238);">print</span>(<span class="hljs-string" style="color: rgb(255, 204, 51);">"ReqXP data for player "</span>..player.UserId..<span class="hljs-string" style="color: rgb(255, 204, 51);">" loaded"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">else</span>
-    <span class="hljs-comment" style="color: rgb(68, 68, 68);">-- New player</span>
-    reqXP.Value = <span class="hljs-number" style="color: rgb(0, 204, 102);">300</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
+    <span class="hljs-built_in" style="color: rgb(170, 87, 60);">print</span>(<span class="hljs-string" style="color: rgb(42, 146, 146);">"ReqXP data for player "</span>..player.UserId..<span class="hljs-string" style="color: rgb(42, 146, 146);">" loaded"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">else</span>
+    <span class="hljs-comment" style="color: rgb(101, 95, 109);">-- New player</span>
+    reqXP.Value = <span class="hljs-number" style="color: rgb(170, 87, 60);">300</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
 
-  numXP.Changed:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">()</span></span>
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span> player:FindFirstChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Levels"</span>):WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"NumXP"</span>).Value &gt;= player:FindFirstChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Levels"</span>):WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"ReqXP"</span>).Value <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span>
-      numLevel.Value = numLevel.Value + <span class="hljs-number" style="color: rgb(0, 204, 102);">1</span>
-      <span class="hljs-built_in" style="color: rgb(50, 170, 238);">print</span>(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Level up!"</span>)
-      <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> step1 = numLevel.Value + <span class="hljs-number" style="color: rgb(0, 204, 102);">1</span>
-      <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> step2 = numLevel.Value * step1
-      <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> step3 = step2/<span class="hljs-number" style="color: rgb(0, 204, 102);">2</span> * <span class="hljs-number" style="color: rgb(0, 204, 102);">100</span>
-      <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> requiredCalc = step3
+  numXP.Changed:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">()</span></span>
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span> player:FindFirstChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Levels"</span>):WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"NumXP"</span>).Value &gt;= player:FindFirstChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Levels"</span>):WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"ReqXP"</span>).Value <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span>
+      numLevel.Value = numLevel.Value + <span class="hljs-number" style="color: rgb(170, 87, 60);">1</span>
+      <span class="hljs-built_in" style="color: rgb(170, 87, 60);">print</span>(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Level up!"</span>)
+      <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> step1 = numLevel.Value + <span class="hljs-number" style="color: rgb(170, 87, 60);">1</span>
+      <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> step2 = numLevel.Value * step1
+      <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> step3 = step2/<span class="hljs-number" style="color: rgb(170, 87, 60);">2</span> * <span class="hljs-number" style="color: rgb(170, 87, 60);">100</span>
+      <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> requiredCalc = step3
       reqXP.Value = requiredCalc
-      <span class="hljs-built_in" style="color: rgb(50, 170, 238);">print</span>(reqXP.Value - numXP.Value..<span class="hljs-string" style="color: rgb(255, 204, 51);">" experience needed to reach Level "</span>.. numLevel.Value + <span class="hljs-number" style="color: rgb(0, 204, 102);">1</span>)
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
+      <span class="hljs-built_in" style="color: rgb(170, 87, 60);">print</span>(reqXP.Value - numXP.Value..<span class="hljs-string" style="color: rgb(42, 146, 146);">" experience needed to reach Level "</span>.. numLevel.Value + <span class="hljs-number" style="color: rgb(170, 87, 60);">1</span>)
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
 
   levelDataLoaded:Fire(player)
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
 
-game.Players.PlayerRemoving:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">(player)</span></span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> levels = player:WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Levels"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> numLevel = levels:WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"NumLevel"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span> numLevel.Value == <span class="hljs-number" style="color: rgb(0, 204, 102);">0</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">or</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">return</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">else</span>
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> ID = player.UserId
-    <span class="hljs-built_in" style="color: rgb(50, 170, 238);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">()</span></span>
+game.Players.PlayerRemoving:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">(player)</span></span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> levels = player:WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Levels"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> numLevel = levels:WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"NumLevel"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span> numLevel.Value == <span class="hljs-number" style="color: rgb(170, 87, 60);">0</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">or</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">return</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">else</span>
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> ID = player.UserId
+    <span class="hljs-built_in" style="color: rgb(170, 87, 60);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">()</span></span>
     level:SetAsync(ID,numLevel.Value)
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
 
 
-game.Players.PlayerRemoving:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">(player)</span></span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> levels = player:WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Levels"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> numXP = levels:WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"NumXP"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span> numXP.Value == <span class="hljs-number" style="color: rgb(0, 204, 102);">0</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">or</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">return</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">else</span>
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> ID = player.UserId
-    <span class="hljs-built_in" style="color: rgb(50, 170, 238);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">()</span></span>
+game.Players.PlayerRemoving:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">(player)</span></span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> levels = player:WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Levels"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> numXP = levels:WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"NumXP"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span> numXP.Value == <span class="hljs-number" style="color: rgb(170, 87, 60);">0</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">or</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">return</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">else</span>
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> ID = player.UserId
+    <span class="hljs-built_in" style="color: rgb(170, 87, 60);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">()</span></span>
     xp:SetAsync(ID,numXP.Value)
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
 
-game.Players.PlayerRemoving:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">(player)</span></span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> levels = player:WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"Levels"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> reqXP = levels:WaitForChild(<span class="hljs-string" style="color: rgb(255, 204, 51);">"ReqXP"</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span> reqXP.Value == <span class="hljs-number" style="color: rgb(0, 204, 102);">0</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">or</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">nil</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">return</span>
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">else</span>
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">local</span> ID = player.UserId
-    <span class="hljs-built_in" style="color: rgb(50, 170, 238);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">()</span></span>
+game.Players.PlayerRemoving:Connect(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">(player)</span></span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> levels = player:WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"Levels"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> reqXP = levels:WaitForChild(<span class="hljs-string" style="color: rgb(42, 146, 146);">"ReqXP"</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span> reqXP.Value == <span class="hljs-number" style="color: rgb(170, 87, 60);">0</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">or</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">nil</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">return</span>
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">else</span>
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">local</span> ID = player.UserId
+    <span class="hljs-built_in" style="color: rgb(170, 87, 60);">pcall</span>(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">()</span></span>
     requiredxp:SetAsync(ID,reqXP.Value)
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
 
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span> <span class="hljs-keyword" style="color: rgb(102, 68, 170);">not</span> game:GetService(<span class="hljs-string" style="color: rgb(255, 204, 51);">"RunService"</span>):IsStudio() <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span>
-  wait(<span class="hljs-number" style="color: rgb(0, 204, 102);">5</span>)
-  game:BindToClose(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(102, 68, 170);">function</span><span class="hljs-params">()</span></span>
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">for</span> i, player <span class="hljs-keyword" style="color: rgb(102, 68, 170);">in</span> <span class="hljs-built_in" style="color: rgb(50, 170, 238);">pairs</span>(game.Players:GetPlayers()) <span class="hljs-keyword" style="color: rgb(102, 68, 170);">do</span>
-      <span class="hljs-keyword" style="color: rgb(102, 68, 170);">if</span> player <span class="hljs-keyword" style="color: rgb(102, 68, 170);">then</span>
-        player:kick(<span class="hljs-string" style="color: rgb(255, 204, 51);">"This game is shutting down"</span>)
-      <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
-    <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span> <span class="hljs-keyword" style="color: rgb(149, 90, 231);">not</span> game:GetService(<span class="hljs-string" style="color: rgb(42, 146, 146);">"RunService"</span>):IsStudio() <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span>
+  wait(<span class="hljs-number" style="color: rgb(170, 87, 60);">5</span>)
+  game:BindToClose(<span class="hljs-function"><span class="hljs-keyword" style="color: rgb(149, 90, 231);">function</span><span class="hljs-params" style="color: rgb(170, 87, 60);">()</span></span>
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">for</span> i, player <span class="hljs-keyword" style="color: rgb(149, 90, 231);">in</span> <span class="hljs-built_in" style="color: rgb(170, 87, 60);">pairs</span>(game.Players:GetPlayers()) <span class="hljs-keyword" style="color: rgb(149, 90, 231);">do</span>
+      <span class="hljs-keyword" style="color: rgb(149, 90, 231);">if</span> player <span class="hljs-keyword" style="color: rgb(149, 90, 231);">then</span>
+        player:kick(<span class="hljs-string" style="color: rgb(42, 146, 146);">"This game is shutting down"</span>)
+      <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
+    <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>
 
-    wait(<span class="hljs-number" style="color: rgb(0, 204, 102);">5</span>)
+    wait(<span class="hljs-number" style="color: rgb(170, 87, 60);">5</span>)
 
-  <span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>)
-<span class="hljs-keyword" style="color: rgb(102, 68, 170);">end</span>
-</pre>
-      
+  <span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span>)
+<span class="hljs-keyword" style="color: rgb(149, 90, 231);">end</span></pre>
+
   </body>
 </html>
