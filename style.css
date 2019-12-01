@@ -57,10 +57,9 @@
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
-  background-color:#fafafa;
   padding: 25px;
   border-radius: 10px;
-  box-shadow: -2px 0px 10px #efefef;
+
 }
 
 .markdown-body .pl-c {
