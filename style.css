@@ -231,6 +231,7 @@
 .markdown-body pre {
   font-family: "Fira Code";
   src: url("https://github.com/beiims/beiims.github.io/misc/FiraCode-Bold.otf") format("opentype");
+  font-weight: bold;
 }
 
 .markdown-body hr {
