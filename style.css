@@ -230,7 +230,7 @@
 .markdown-body kbd,
 .markdown-body pre {
   font-family: "Menlo";
-  src: url("https://github.com/beiims/beiims.github.io/misc/Menlo-Bold.ttf");
+  src: url("misc/Menlo-Bold.ttf");
   font-weight: bold;
 }
 
@@ -394,8 +394,9 @@
 
 .markdown-body code,
 .markdown-body pre {
-  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-  font-size: 12px;
+  font-family: "Menlo";
+  src: url("misc/Menlo-Bold.ttf");
+  font-weight: bold;
 }
 
 .markdown-body pre {
