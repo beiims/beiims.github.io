@@ -48,6 +48,12 @@
   visibility: visible;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -57,9 +63,12 @@
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
-  padding: 25px;
   border-radius: 10px;
-
+  background: #ffffff;
+  padding-top: -10px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 35px;
 }
 
 .markdown-body .pl-c {
