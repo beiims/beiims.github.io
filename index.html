@@ -3,185 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-		<title>home - beiims.world</title>
+		<title> B O S S C A T </title>
 		<link rel="stylesheet" href="style.css">
-		<style>
-			body {
-				box-sizing: border-box;
-				min-width: 200px;
-				max-width: 970px;
-				margin: 0 auto;
-				padding: 45px;
-				background-image: url("images/bg.png");
-				background-position: 50% 50%;
-				background-repeat: repeat;
-			}
-		</style>
+		<link rel="icon" href="images\bosscat_logo.png">	
 	</head>
 	<body>
-		<article class="markdown-body">
-<p><a name="user-content-headers"></a></p><a name="user-content-headers">
 
-<h1 align="center" id="-beiims-world-">/beiims.world/</h1>
+		<div class="topnav">
+			<img src="images\bosscat_logo.png" alt="BOSSCAT">
+			<a href="https://www.twitter.com/beiims">TWITTER</a>
+			<a href="index.html">HOME</a>
+		</div>
 
-<p align="center">
-	<a href="index.html">home</a> ·
-	<a href="https://www.twitter.com/beiims">twitter</a> ·
-	<a href="#page3">dev</a> ·
-	<a href="pages/dsktps.html">dsktps</a>
-</p>
-<br>
+		<div class="column1">
+		</div>
 
-I'm <i><strong>beiims</strong></i>, an independent game developer, programmer, and musician.<br>
-I work mostly with <em>lua</em> and <em>bash</em>.
+		<div class="column2">
+		</div>
 
-<hr>
-<h5 id="levelmain-lua"><b>[DEPRECATED]</b>  LevelMain.lua</h5>
-<p>(Will update soon) This is a very simple lua scaling level system.<br>
-Requirements for use without modification:
-	<ul>
-		<li>A folder titled <i>"Events"</i> under <strong>ReplicatedStorage</strong></li>
-		<li>A <strong>RemoteEvent</strong> titled <i>"LevelDataLoaded"</i> under <i>"Events"</i> folder</li>
-	</ul>
-</p>
-
-<div><pre style="background: #161822; color: #c7c8d1;">
-<span style="color: #89A0C3; font-weight: bold">local</span> replicatedStorage <span style="color: #C7C8D0">=</span> game:GetService(<span style="background-color: #d9a67f; color: #161822">&quot;ReplicatedStorage&quot;</span>)
-<span style="color: #89A0C3; font-weight: bold">local</span> events <span style="color: #C7C8D0">=</span> replicatedStorage:WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;Events&quot;</span>)
-<span style="color: #89A0C3; font-weight: bold">local</span> levelDataLoaded <span style="color: #C7C8D0">=</span> events:WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;LevelDataLoaded&quot;</span>)
-<span style="color: #89A0C3; font-weight: bold">local</span> level <span style="color: #C7C8D0">=</span> game:GetService(<span style="background-color: #d9a67f; color: #161822">&quot;DataStoreService&quot;</span>):GetOrderedDataStore(<span style="background-color: #d9a67f; color: #161822">&quot;Levels&quot;</span>)
-<span style="color: #89A0C3; font-weight: bold">local</span> xp <span style="color: #C7C8D0">=</span> game:GetService(<span style="background-color: #d9a67f; color: #161822">&quot;DataStoreService&quot;</span>):GetOrderedDataStore(<span style="background-color: #d9a67f; color: #161822">&quot;XP&quot;</span>)
-<span style="color: #89A0C3; font-weight: bold">local</span> requiredxp <span style="color: #C7C8D0">=</span> game:GetService(<span style="background-color: #d9a67f; color: #161822">&quot;DataStoreService&quot;</span>):GetOrderedDataStore(<span style="background-color: #d9a67f; color: #161822">&quot;RequiredXP&quot;</span>)
-
-
-  game.<span style="color: #B6BD89; font-weight: bold">Players</span>.<span style="color: #B6BD89; font-weight: bold">PlayerAdded</span>:Connect(</span><span style="color: #89A0C3; font-weight: bold">function</span>(player)
-
-  <span style="color: #89A0C3; font-weight: bold">local</span> playerName <span style="color: #C7C8D0">=</span> player.<span style="color: #B6BD89; font-weight: bold">Name</span>
-
-  <span style="color: #89A0C3; font-weight: bold">local</span> Levels <span style="color: #C7C8D0">=</span> Instance.new(<span style="background-color: #d9a67f; color: #161822">&quot;Folder&quot;</span>)
-  Levels.<span style="color: #B6BD89; font-weight: bold">Name</span> <span style="color: #C7C8D0">=</span> <span style="background-color: #d9a67f; color: #161822">&quot;Levels&quot;</span>
-  Levels.<span style="color: #B6BD89; font-weight: bold">Parent</span> <span style="color: #C7C8D0">=</span> player
-
-  <span style="color: #89A0C3; font-weight: bold">local</span> numLevel <span style="color: #C7C8D0">=</span> Instance.new(<span style="background-color: #d9a67f; color: #161822">&quot;IntValue&quot;</span>)
-  numLevel.<span style="color: #B6BD89; font-weight: bold">Name</span> <span style="color: #C7C8D0">=</span> <span style="background-color: #d9a67f; color: #161822">&quot;NumLevel&quot;</span>
-  numLevel.<span style="color: #B6BD89; font-weight: bold">Parent</span> <span style="color: #C7C8D0">=</span> Levels
-
-  <span style="color: #89A0C3; font-weight: bold">local</span> numXP <span style="color: #C7C8D0">=</span> Instance.new(<span style="background-color: #d9a67f; color: #161822">&quot;IntValue&quot;</span>)
-  numXP.<span style="color: #B6BD89; font-weight: bold">Name</span> <span style="color: #C7C8D0">=</span> <span style="background-color: #d9a67f; color: #161822">&quot;NumXP&quot;</span>
-  numXP.<span style="color: #B6BD89; font-weight: bold">Parent</span> <span style="color: #C7C8D0">=</span> Levels
-
-  <span style="color: #89A0C3; font-weight: bold">local</span> reqXP <span style="color: #C7C8D0">=</span> Instance.new(<span style="background-color: #d9a67f; color: #161822">&quot;IntValue&quot;</span>)
-  reqXP.<span style="color: #B6BD89; font-weight: bold">Name</span> <span style="color: #C7C8D0">=</span> <span style="background-color: #d9a67f; color: #161822">&quot;ReqXP&quot;</span>
-  reqXP.<span style="color: #B6BD89; font-weight: bold">Parent</span> <span style="color: #C7C8D0">=</span> Levels
-
-  <span style="color: #89A0C3; font-weight: bold">local</span> numLevelSavedData <span style="color: #C7C8D0">=</span> <span style="color: #89A0C3; font-weight: bold">nil</span>
-  <span style="color: #89A0C3; font-weight: bold">local</span> numXPSavedData <span style="color: #C7C8D0">=</span> <span style="color: #89A0C3; font-weight: bold">nil</span>
-  <span style="color: #89A0C3; font-weight: bold">local</span> reqXPSavedData <span style="color: #C7C8D0">=</span> <span style="color: #89A0C3; font-weight: bold">nil</span>
-
-  <span style="color: #9D94C3">pcall</span>(<span style="color: #89A0C3; font-weight: bold">function</span>()
-    numLevelSavedData <span style="color: #C7C8D0">=</span> level:GetAsync(<span style="color: #9D94C3">tostring</span>(player.<span style="color: #B6BD89; font-weight: bold">UserId</span>))
-  <span style="color: #89A0C3; font-weight: bold">end</span>)
-
-  <span style="color: #89A0C3; font-weight: bold">if</span>  numLevelSavedData <span style="color: #C7C8D0">~=</span> <span style="color: #89A0C3; font-weight: bold">nil</span> <span style="color: #89A0C3; font-weight: bold">then</span>
-    numLevel.Value <span style="color: #C7C8D0">=</span> numLevelSavedData
-    <span style="color: #9D94C3">print</span>(<span style="background-color: #d9a67f; color: #161822">&quot;NumLevel data for player &quot;</span><span style="color: #C7C8D0">..</span>player.UserId<span style="color: #C7C8D0">..</span><span style="background-color: #d9a67f; color: #161822">&quot; loaded&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">else</span>
-    <span style="color: #666666; font-style: italic">-- New player</span>
-    numLevel.Value <span style="color: #C7C8D0">=</span> <span style="color: #9E94C3; font-weight: bold">1</span>
-  <span style="color: #89A0C3; font-weight: bold">end</span>
-
-  <span style="color: #9D94C3">pcall</span>(<span style="color: #89A0C3; font-weight: bold">function</span>()
-    numXPSavedData <span style="color: #C7C8D0">=</span> xp:GetAsync(<span style="color: #9D94C3">tostring</span>(player.UserId))
-  <span style="color: #89A0C3; font-weight: bold">end</span>)
-
-  <span style="color: #89A0C3; font-weight: bold">if</span>  numXPSavedData <span style="color: #C7C8D0">~=</span> <span style="color: #89A0C3; font-weight: bold">nil</span> <span style="color: #89A0C3; font-weight: bold">then</span>
-    numXP.Value <span style="color: #C7C8D0">=</span> numXPSavedData
-    <span style="color: #9D94C3">print</span>(<span style="background-color: #d9a67f; color: #161822">&quot;NumXP data for player &quot;</span><span style="color: #C7C8D0">..</span>player.UserId<span style="color: #C7C8D0">..</span><span style="background-color: #d9a67f; color: #161822">&quot; loaded&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">else</span>
-    <span style="color: #666666; font-style: italic">-- New player</span>
-    numXP.Value <span style="color: #C7C8D0">=</span> <span style="color: #9E94C3; font-weight: bold">0</span>
-  <span style="color: #89A0C3; font-weight: bold">end</span>
-
-  <span style="color: #9D94C3">pcall</span>(<span style="color: #89A0C3; font-weight: bold">function</span>()
-    reqXPSavedData <span style="color: #C7C8D0">=</span> requiredxp:GetAsync(<span style="color: #9D94C3">tostring</span>(player.UserId))
-  <span style="color: #89A0C3; font-weight: bold">end</span>)
-
-  <span style="color: #89A0C3; font-weight: bold">if</span>  reqXPSavedData <span style="color: #C7C8D0">~=</span> <span style="color: #89A0C3; font-weight: bold">nil</span> <span style="color: #89A0C3; font-weight: bold">then</span>
-    reqXP.Value <span style="color: #C7C8D0">=</span> reqXPSavedData
-    <span style="color: #9D94C3">print</span>(<span style="background-color: #d9a67f; color: #161822">&quot;ReqXP data for player &quot;</span><span style="color: #C7C8D0">..</span>player.UserId<span style="color: #C7C8D0">..</span><span style="background-color: #d9a67f; color: #161822">&quot; loaded&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">else</span>
-    <span style="color: #666666; font-style: italic">-- New player</span>
-    reqXP.Value <span style="color: #C7C8D0">=</span> <span style="color: #9E94C3; font-weight: bold">300</span>
-  <span style="color: #89A0C3; font-weight: bold">end</span>
-
-  numXP.Changed:Connect(<span style="color: #89A0C3; font-weight: bold">function</span>()
-    <span style="color: #89A0C3; font-weight: bold">if</span> player:FindFirstChild(<span style="background-color: #d9a67f; color: #161822">&quot;Levels&quot;</span>):WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;NumXP&quot;</span>).Value <span style="color: #C7C8D0">&gt;=</span> player:FindFirstChild(<span style="background-color: #d9a67f; color: #161822">&quot;Levels&quot;</span>):WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;ReqXP&quot;</span>).Value <span style="color: #89A0C3; font-weight: bold">then</span>
-      numLevel.Value <span style="color: #C7C8D0">=</span> numLevel.Value <span style="color: #C7C8D0">+</span> <span style="color: #9E94C3; font-weight: bold">1</span>
-      <span style="color: #9D94C3">print</span>(<span style="background-color: #d9a67f; color: #161822">&quot;Level up!&quot;</span>)
-      <span style="color: #89A0C3; font-weight: bold">local</span> calcSum <span style="color: #C7C8D0">=</span> numLevel.Value <span style="color: #C7C8D0">+</span> <span style="color: #9E94C3; font-weight: bold">1</span>
-      <span style="color: #89A0C3; font-weight: bold">local</span> calcProduct <span style="color: #C7C8D0">=</span> numLevel.Value <span style="color: #C7C8D0">*</span> calcSum
-      <span style="color: #89A0C3; font-weight: bold">local</span> calcFinal <span style="color: #C7C8D0">=</span> calcProduct<span style="color: #C7C8D0">/</span><span style="color: #9E94C3; font-weight: bold">2</span> <span style="color: #C7C8D0">*</span> <span style="color: #9E94C3; font-weight: bold">100</span>
-      <span style="color: #89A0C3; font-weight: bold">local</span> requiredCalc <span style="color: #C7C8D0">=</span> calcFinal
-      reqXP.Value <span style="color: #C7C8D0">=</span> requiredCalc
-      <span style="color: #9D94C3">print</span>(reqXP.Value <span style="color: #C7C8D0">-</span> numXP.Value<span style="color: #C7C8D0">..</span><span style="background-color: #d9a67f; color: #161822">&quot; experience needed to reach Level &quot;</span><span style="color: #C7C8D0">..</span> numLevel.Value <span style="color: #C7C8D0">+</span> <span style="color: #9E94C3; font-weight: bold">1</span>)
-    <span style="color: #89A0C3; font-weight: bold">end</span>
-  <span style="color: #89A0C3; font-weight: bold">end</span>)
-
-  levelDataLoaded:Fire(player)
-<span style="color: #89A0C3; font-weight: bold">end</span>)
-
-game.Players.PlayerRemoving:Connect(<span style="color: #89A0C3; font-weight: bold">function</span>(player)
-  <span style="color: #89A0C3; font-weight: bold">local</span> levels <span style="color: #C7C8D0">=</span> player:WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;Levels&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">local</span> numLevel <span style="color: #C7C8D0">=</span> levels:WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;NumLevel&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">if</span> numLevel.Value <span style="color: #C7C8D0">==</span> <span style="color: #9E94C3; font-weight: bold">0</span> <span style="color: #D47D7B; font-weight: bold">or</span> <span style="color: #89A0C3; font-weight: bold">nil</span> <span style="color: #89A0C3; font-weight: bold">then</span> <span style="color: #89A0C3; font-weight: bold">return</span>
-  <span style="color: #89A0C3; font-weight: bold">else</span>
-    <span style="color: #89A0C3; font-weight: bold">local</span> ID <span style="color: #C7C8D0">=</span> player.UserId
-    <span style="color: #9D94C3">pcall</span>(<span style="color: #89A0C3; font-weight: bold">function</span>()
-    level:SetAsync(ID,numLevel.Value)
-    <span style="color: #89A0C3; font-weight: bold">end</span>)
-  <span style="color: #89A0C3; font-weight: bold">end</span>
-<span style="color: #89A0C3; font-weight: bold">end</span>)
-
-
-game.Players.PlayerRemoving:Connect(<span style="color: #89A0C3; font-weight: bold">function</span>(player)
-  <span style="color: #89A0C3; font-weight: bold">local</span> levels <span style="color: #C7C8D0">=</span> player:WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;Levels&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">local</span> numXP <span style="color: #C7C8D0">=</span> levels:WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;NumXP&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">if</span> numXP.Value <span style="color: #C7C8D0">==</span> <span style="color: #9E94C3; font-weight: bold">0</span> <span style="color: #D47D7B; font-weight: bold">or</span> <span style="color: #89A0C3; font-weight: bold">nil</span> <span style="color: #89A0C3; font-weight: bold">then</span> <span style="color: #89A0C3; font-weight: bold">return</span>
-  <span style="color: #89A0C3; font-weight: bold">else</span>
-    <span style="color: #89A0C3; font-weight: bold">local</span> ID <span style="color: #C7C8D0">=</span> player.UserId
-    <span style="color: #9D94C3">pcall</span>(<span style="color: #89A0C3; font-weight: bold">function</span>()
-    xp:SetAsync(ID,numXP.Value)
-    <span style="color: #89A0C3; font-weight: bold">end</span>)
-  <span style="color: #89A0C3; font-weight: bold">end</span>
-<span style="color: #89A0C3; font-weight: bold">end</span>)
-
-game.Players.PlayerRemoving:Connect(<span style="color: #89A0C3; font-weight: bold">function</span>(player)
-  <span style="color: #89A0C3; font-weight: bold">local</span> levels <span style="color: #C7C8D0">=</span> player:WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;Levels&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">local</span> reqXP <span style="color: #C7C8D0">=</span> levels:WaitForChild(<span style="background-color: #d9a67f; color: #161822">&quot;ReqXP&quot;</span>)
-  <span style="color: #89A0C3; font-weight: bold">if</span> reqXP.Value <span style="color: #C7C8D0">==</span> <span style="color: #9E94C3; font-weight: bold">0</span> <span style="color: #D47D7B; font-weight: bold">or</span> <span style="color: #89A0C3; font-weight: bold">nil</span> <span style="color: #89A0C3; font-weight: bold">then</span> <span style="color: #89A0C3; font-weight: bold">return</span>
-  <span style="color: #89A0C3; font-weight: bold">else</span>
-    <span style="color: #89A0C3; font-weight: bold">local</span> ID <span style="color: #C7C8D0">=</span> player.UserId
-    <span style="color: #9D94C3">pcall</span>(<span style="color: #89A0C3; font-weight: bold">function</span>()
-    requiredxp:SetAsync(ID,reqXP.Value)
-    <span style="color: #89A0C3; font-weight: bold">end</span>)
-  <span style="color: #89A0C3; font-weight: bold">end</span>
-<span style="color: #89A0C3; font-weight: bold">end</span>)
-
-<span style="color: #89A0C3; font-weight: bold">if</span> <span style="color: #D47D7B; font-weight: bold">not</span> game:GetService(<span style="background-color: #d9a67f; color: #161822">&quot;RunService&quot;</span>):IsStudio() <span style="color: #89A0C3; font-weight: bold">then</span>
-  wait(<span style="color: #9E94C3; font-weight: bold">5</span>)
-  game:BindToClose(<span style="color: #89A0C3; font-weight: bold">function</span>()
-    <span style="color: #89A0C3; font-weight: bold">for</span> i, player <span style="color: #89A0C3; font-weight: bold">in</span> <span style="color: #9D94C3">pairs</span>(game.Players:GetPlayers()) <span style="color: #89A0C3; font-weight: bold">do</span>
-      <span style="color: #89A0C3; font-weight: bold">if</span> player <span style="color: #89A0C3; font-weight: bold">then</span>
-        player:kick(<span style="background-color: #d9a67f; color: #161822">&quot;This game is shutting down&quot;</span>)
-      <span style="color: #89A0C3; font-weight: bold">end</span>
-    <span style="color: #89A0C3; font-weight: bold">end</span>
-
-    wait(<span style="color: #9E94C3; font-weight: bold">5</span>)
-
-  <span style="color: #89A0C3; font-weight: bold">end</span>)
-<span style="color: #89A0C3; font-weight: bold">end</span>
-</pre>
-
-
-  </body>
+	</body>
 </html>
